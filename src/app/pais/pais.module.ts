@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'; // Important to use the ngModel in the template
+import { HttpClientModule } from "@angular/common/http";
+
 import { PorCapitalComponent } from './pages/por-capital/por-capital.component';
 import { PorPaisComponent } from './pages/por-pais/por-pais.component';
 import { PorRegionComponent } from './pages/por-region/por-region.component';
 import { VerPaisComponent } from './pages/ver-pais/ver-pais.component';
-
-
 
 @NgModule({
   declarations: [
@@ -15,7 +16,9 @@ import { VerPaisComponent } from './pages/ver-pais/ver-pais.component';
     VerPaisComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    HttpClientModule
   ],
   exports: [
     PorCapitalComponent,
@@ -24,4 +27,5 @@ import { VerPaisComponent } from './pages/ver-pais/ver-pais.component';
     VerPaisComponent
   ]
 })
+
 export class PaisModule { }

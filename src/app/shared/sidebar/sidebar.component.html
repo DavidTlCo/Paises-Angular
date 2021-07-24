@@ -1,1 +1,26 @@
-<p>sidebar works!</p>
+<h2>Búsqueda</h2>
+<hr>
+<ul class="list-group">
+    <!-- routerLink                 => Specifies the route to which you are going by clicking
+        routerLinkActive           => Marks the active link
+        [routerLinkActiveOptions]  => Specifies strict mode when a route is "" to this-->
+    <li routerLink=""
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="list-group-item link-sidebar"
+    >
+    Por país
+    </li>
+    <li routerLink="region"
+    routerLinkActive="active"
+    class="list-group-item link-sidebar"
+    >
+    Por región
+    </li>
+    <li routerLink="capital"
+    routerLinkActive="active"
+    class="list-group-item link-sidebar"
+    >
+    Por capital
+    </li> 
+</ul>

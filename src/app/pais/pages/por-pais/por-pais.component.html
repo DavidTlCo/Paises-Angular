@@ -3,15 +3,8 @@
 <!-- Section with input to make queries -->
 <div class="row">
     <div class="col">
-        <form (ngSubmit)=buscar()>
-            <input
-                autocomplete="off"
-                type="text" 
-                name="busqueda"
-                class="form-control"
-                [(ngModel)]="termino"
-                placeholder="Buscar país">
-        </form>
+        <!-- Calls the onEnter sending the arguments from child, parent received it -->
+        <app-pais-input (onEnter)="buscar( $event )"></app-pais-input>
     </div>
 </div>
 <hr>
@@ -23,32 +16,6 @@
 <!-- Structure to show result -->
 <div *ngIf="paises.length>0 && !hayError" class="row">
     <div class="col">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Bandera</th>
-                    <th>País</th>
-                    <th>Capital</th>
-                    <th>Región</th>
-                    <th>Habitantes</th>
-                    <th>Área</th>
-                    <th>Enlace</th>
-                </tr>
-            </thead>
-
-            <tbody *ngFor="let pais of paises, let i = index">
-                <tr>
-                    <td>{{ i+1 }}</td>
-                    <td> <img [src]="pais.flag" alt="Bandera" class="small-flag"></td>
-                    <td>{{ pais.nativeName }}</td>
-                    <td>{{ pais.capital }}</td>
-                    <td>{{ pais.subregion }}</td>
-                    <td>{{ pais.population | number }}</td>
-                    <td>{{ pais.area | number }} mts<sup>2</sup></td>
-                    <td><a [routerLink]="['/pais', pais.alpha2Code]">Ver más</a></td>
-                </tr>
-            </tbody>
-        </table>
+        <app-pais-table [paises]="paises"></app-pais-table>
     </div>
 </div>

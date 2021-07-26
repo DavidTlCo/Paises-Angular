@@ -11,7 +11,6 @@ import { Country } from '../../interfaces/pais.interface';
 })
 
 export class PorPaisComponent implements OnInit {
-  termino: string = '';
   hayError: boolean = false;
   ultimo: string = '';
   paises: Country[] = [];
@@ -21,10 +20,10 @@ export class PorPaisComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  buscar(): void {
+  buscar( termino: string ): void {
     this.hayError = false;
-    this.ultimo = this.termino;
-    this.paisService.buscar( this.termino )
+    this.ultimo = termino;
+    this.paisService.buscar( termino )
     .subscribe( 
       // Suscribe contains "next" which is OK...
     paises => {
@@ -35,7 +34,6 @@ export class PorPaisComponent implements OnInit {
     err => {
       this.hayError = true;
     });
-    this.termino = '';
   }
 
 }

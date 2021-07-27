@@ -4,18 +4,22 @@
 <div class="row">
     <div class="col">
         <!-- Calls the onEnter sending the arguments from child, parent received it -->
-        <app-pais-input></app-pais-input>
+        <app-pais-input 
+            (onEnter)="buscar( $event )"
+            (onDebounce)="mostrarSugerencias( $event )"
+            placeholder="Buscar capital"
+        ></app-pais-input>
     </div>
 </div>
-<hr>
+
 <!-- Show errors -->
-<div class="alert alert-danger">
-    No se han econtrado resultados para: 
+<div *ngIf="hayError" class="alert alert-danger mt-3">
+    No se han econtrado resultados para: {{ ultimo }}
 </div>
 
 <!-- Structure to show result -->
-<div class="row">
+<div *ngIf="paises.length>0 && !hayError" class="row">
     <div class="col">
-        <app-pais-table></app-pais-table>
+        <app-pais-table [paises]="paises"></app-pais-table>
     </div>
 </div>

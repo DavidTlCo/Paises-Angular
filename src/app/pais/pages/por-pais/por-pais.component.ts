@@ -23,7 +23,7 @@ export class PorPaisComponent implements OnInit {
   buscar( termino: string ): void {
     this.hayError = false;
     this.ultimo = termino;
-    this.paisService.buscar( termino )
+    this.paisService.buscarPais( termino )
     .subscribe( 
       // Suscribe contains "next" which is OK...
     paises => {
@@ -37,7 +37,7 @@ export class PorPaisComponent implements OnInit {
   }
 
   mostrarSugerencias( termino: string ): void {
-    this.hayError = false;
+    // this.hayError = false;
     
   }
 }

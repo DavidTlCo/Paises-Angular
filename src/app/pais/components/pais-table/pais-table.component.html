@@ -3,12 +3,11 @@
         <tr>
             <th></th>
             <th>Bandera</th>
-            <th>País</th>
-            <th>Capital</th>
+            <th>Lugar</th>
             <th>Región</th>
             <th>Habitantes</th>
             <th>Área</th>
-            <th>Enlace</th>
+            <th></th>
         </tr>
     </thead>
 
@@ -16,8 +15,7 @@
         <tr>
             <td>{{ i+1 }}</td>
             <td> <img [src]="pais.flag" alt="Bandera" class="small-flag"></td>
-            <td>{{ pais.name }}</td>
-            <td>{{ pais.capital }}</td>
+            <td>{{ pais.capital }}, {{ pais.name }}</td>
             <td>{{ pais.subregion }}</td>
             <td>{{ pais.population | number }}</td>
             <td>{{ pais.area | number }} mts<sup>2</sup></td>

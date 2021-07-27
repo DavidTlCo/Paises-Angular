@@ -1,1 +1,89 @@
-<p>ver-pais works!</p>
+<div 
+    *ngIf="!pais; else divPais"
+    class="alert alert-info">
+    Espere por favor...
+</div>
+
+<ng-template #divPais>
+    <div class="row">
+        <div class="col">
+            <h3>País: <small class="text-primary"> {{ pais.capital }}, {{ pais.name }}</small></h3>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row">
+        
+        <div class="col">
+            <h3>Bandera</h3>
+            <img [src]="pais.flag" alt="Bandera" class="img-thumbnail">
+        </div>
+
+        <div class="col">
+            <h3>Información</h3>
+            <ul class="list-group">
+                <!-- Region -->
+                <li class="list-group-item">
+                    <strong>Región: </strong> {{ pais.subregion }}
+                </li>
+
+                <!-- Lat, long -->
+                <li class="list-group-item">
+                    <strong>Latitud: </strong> {{ pais.latlng[0] | number: '.2-3' }}
+                    <strong>Longitud: </strong> {{ pais.latlng[1] | number: '.2-3' }}
+                </li>
+
+                <!-- Área -->
+                <li class="list-group-item">
+                    <strong>Territorio: </strong> {{ pais.area | number }} mts <sup>2</sup>
+                </li>
+
+                <!-- Population -->
+                <li class="list-group-item">
+                    <strong>Habitantes: </strong> {{ pais.population | number }}
+                </li>
+
+                <!-- Zonetimes -->
+                <li class="list-group-item">
+                    <strong>Huso(s) horario(s): </strong>
+                    <ul *ngFor="let huso of pais.timezones" class="list-group">
+                        <li class="list-group-item">{{ huso }}</li>
+                    </ul>
+                </li>
+                
+                <!-- Currencies -->
+                <li class="list-group-item">
+                    <strong>Economía </strong>
+                    <ul *ngFor="let coin of pais.currencies" class="list-group">
+                        <ul class="list.group">
+                            <li class="list-group-item"><strong>Moneda: </strong>{{ coin.name }}</li>
+                            <li class="list-group-item"><strong>Código: </strong>{{ coin.code }}</li>
+                            <li class="list-group-item"><strong>Símbolo: </strong>{{ coin.symbol }}</li>
+                        </ul>
+                    </ul>
+                </li>
+
+                <!-- Languages -->
+                <li class="list-group-item">
+                    <strong>Idioma(s): </strong>
+                    <ul *ngFor="let lan of pais.languages" class="list.group">
+                        <li class="list-group-item"><strong>Universal: </strong>{{ lan.name }}</li>
+                        <li class="list-group-item"><strong>Nativo: </strong>{{ lan.nativeName }}</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <h3>Otros nombres</h3>
+        <div class="row">
+            <div class="col" *ngFor="let name of pais.regionalBlocs[0].otherNames">
+                <span class="badge bg-primary mb-5">{{ name }}</span>
+            </div>
+        </div>
+
+        <!-- Show structure json -->
+        <!-- <pre>
+            {{ pais | json }}
+        </pre> -->
+    </div>
+</ng-template>

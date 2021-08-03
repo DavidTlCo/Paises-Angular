@@ -12,6 +12,17 @@
             ></app-pais-input>
         </div>
     </div>
+    <!-- Show suggestions when not typping -->
+    <ul class="list-group" *ngIf="!hayError && sugerencias">
+        <li *ngFor="let pais of paisesSugeridos"
+            class="list-group-item list-group-item-action">
+            <a [routerLink]="['/pais', pais.alpha2Code]"
+                class="nav-link"
+            >
+                {{ pais.name }}
+            </a>
+        </li>
+    </ul>
 </div>
     
 <!-- Show errors -->
@@ -20,7 +31,7 @@
 </div>
 
 <!-- Structure to show result -->
-<div *ngIf="paises.length>0 && !hayError" class="row">
+<div *ngIf="paises.length>0 && !hayError && tabla" class="row">
     <div class="col">
         <app-pais-table [paises]="paises"></app-pais-table>
     </div>

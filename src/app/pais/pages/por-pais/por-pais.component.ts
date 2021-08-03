@@ -12,8 +12,11 @@ import { Country } from '../../interfaces/pais.interface';
 
 export class PorPaisComponent implements OnInit {
   hayError: boolean = false;
+  sugerencias: boolean = false;
+  tabla: boolean = false;
   ultimo: string = '';
   paises: Country[] = [];
+  paisesSugeridos: Country[] = [];
 
   constructor( private paisService: PaisService ) { }
 
@@ -22,6 +25,8 @@ export class PorPaisComponent implements OnInit {
 
   buscar( termino: string ): void {
     this.hayError = false;
+    this.sugerencias = false;
+    this.tabla = true;
     this.ultimo = termino;
     this.paisService.buscarPais( termino )
     .subscribe( 
@@ -37,7 +42,20 @@ export class PorPaisComponent implements OnInit {
   }
 
   mostrarSugerencias( termino: string ): void {
-    // this.hayError = false;
-    
+    // If termino is not empty
+    if (termino.length > 0) {
+      this.hayError = false;
+      this.sugerencias = true;
+      this.tabla = false;
+      this.ultimo = termino;
+      this.paisService.buscarPais( termino )
+      .subscribe( paises => this.paisesSugeridos = paises.splice(0,7),
+      err => {
+            this.hayError = true;
+          });
+    } else {
+      // No results to not show the error
+      this.paisesSugeridos = [];
+    }
   }
 }

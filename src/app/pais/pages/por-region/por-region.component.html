@@ -1,22 +1,28 @@
-<h3>Por región</h3>
-<hr>
-<!-- Section with input to make queries -->
-<div class="row">
-    <div class="col">
-        <!-- Calls the onEnter sending the arguments from child, parent received it -->
-        <app-pais-input
-            placeholder="Buscar región"></app-pais-input>
+<div class="animate__animated animate__fadeIn animate__faster">
+    <h3>Por región: {{ regionActiva | titlecase }}</h3>
+    <hr>
+    <!-- Section with buttons to make queries -->
+    <div class="row">
+        <div class="col">
+            <!-- Calls the request depending region selected -->
+            
+            <!-- Choices to add a class to element-->
+            <!-- [class.btn-primary]="region === regionActiva" -->
+            <!-- [ngClass]="{'btn-primary': regionActiva === region,
+                'btn-outline-primary': regionActiva !== region}" -->
+                <!-- [class]=" (regionActiva === region ) ? 'btn btn-primary' : 'btn btn-outline-primary'" -->
+                <button 
+                *ngFor="let region of regiones"
+                [class]="setClass( region )"
+                (click)="buscar( region )">
+                {{ region | titlecase }}
+            </button>
+        </div>
     </div>
 </div>
 
-<!-- Show errors -->
-<div class="alert alert-danger mt-3">
-    No se han econtrado resultados para: 
-</div>
-
-<!-- Structure to show result -->
-<div class="row">
+<div *ngIf="paises.length>0 && !hayError" class="row">
     <div class="col">
-        <app-pais-table></app-pais-table>
+        <app-pais-table [paises]="paises"></app-pais-table>
     </div>
 </div>

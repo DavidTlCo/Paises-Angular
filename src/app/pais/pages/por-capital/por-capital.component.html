@@ -1,19 +1,21 @@
-<h3>Por capital</h3>
-<hr>
-<!-- Section with input to make queries -->
-<div class="row">
-    <div class="col">
-        <!-- Calls the onEnter sending the arguments from child, parent received it -->
-        <app-pais-input 
+<div class="animate__animated animate__fadeIn animate__faster">
+    <h3>Por capital</h3>
+    <hr>
+    <!-- Section with input to make queries -->
+    <div class="row">
+        <div class="col">
+            <!-- Calls the onEnter sending the arguments from child, parent received it -->
+            <app-pais-input 
             (onEnter)="buscar( $event )"
             (onDebounce)="mostrarSugerencias( $event )"
             placeholder="Buscar capital"
-        ></app-pais-input>
+            ></app-pais-input>
+        </div>
     </div>
 </div>
 
 <!-- Show errors -->
-<div *ngIf="hayError" class="alert alert-danger mt-3">
+<div *ngIf="hayError" class="alert alert-danger mt-3 animate__animated animate__delay-3s animate__fadeOutDown">
     No se han econtrado resultados para: {{ ultimo }}
 </div>
 

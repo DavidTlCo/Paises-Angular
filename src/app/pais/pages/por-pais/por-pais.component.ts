@@ -27,7 +27,7 @@ export class PorPaisComponent implements OnInit {
     .subscribe( 
       // Suscribe contains "next" which is OK...
     paises => {
-      console.log( paises );
+      // console.log( paises );
       this.paises = paises;
     },
     // It contains a "error" too, both depends reponse
